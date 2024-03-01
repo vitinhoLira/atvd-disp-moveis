@@ -1,18 +1,19 @@
-import { Input } from '@rneui/themed'
 import React from 'react'
-import { StyleSheet, Text, View, Image } from 'react-native'
-import { Button } from '@rneui/themed'
+import { StyleSheet, Text, View, Image, SafeAreaView } from 'react-native'
+import { Button, Input, Icon } from '@rneui/themed'
 
-const Flex = () => {
+const login = () => {
   return (
-    <View style={[styles.container]}>
+    <View style={[styles.login]}>
       <View>
         <Image
-          source={require('https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAxL3JtNjA5LXNvbGlkaWNvbi13LTAwMi1wLnBuZw.png')}
+          source={{ uri: 'https://cdn-icons-png.flaticon.com/512/5987/5987462.png' }}
+          style={{ width: 100, height: 100 }} // Defina o tamanho desejado da imagem
         />
       </View>
+
       <View style={[styles.cadastro]}>
-        <Input placeholder='Login' />
+        <Input placeholder='Entrar' />
         <Input placeholder='Senha' />
       </View>
 
@@ -36,13 +37,63 @@ const Flex = () => {
   )
 }
 
+const contatos = () => {
+  return (
+    <View style={[styles.contatos]}>
+
+      <View>
+        <Text>Lista de contatos</Text>
+        <Icon
+        name='pluscircleo' />
+      </View>
+
+      <View>
+        <Image
+          source={{ uri: 'https://cdn-icons-png.flaticon.com/512/5987/5987462.png' }}
+          style={{ width: 100, height: 100 }}
+          
+        /> 
+          <Text>Marcos Andrade</Text>
+          <Text>81 988553424</Text>
+      </View>
+
+      <View>
+        <Image
+          source={{ uri: 'https://cdn-icons-png.flaticon.com/512/5987/5987462.png' }}
+          style={{ width: 100, height: 100 }}
+        />
+        <Text>Patrícia Tavares</Text>
+          <Text>81 998765332</Text>
+        
+      </View>
+
+      <View>
+        <Image
+          source={{ uri: 'https://cdn-icons-png.flaticon.com/512/5987/5987462.png' }}
+          style={{ width: 100, height: 100 }}
+        />
+      </View>
+
+      <Text>Rodrigo Antunes</Text>
+          <Text>81 987765525</Text>
+
+    </View>
+  )
+}
+
 const styles = StyleSheet.create({
-  container: {
+  login: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  cadastro: {},
+  contatos: {
+
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+
+  },
 })
 
-export default Flex
+export default contatos
