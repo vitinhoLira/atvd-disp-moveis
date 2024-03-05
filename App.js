@@ -1,8 +1,9 @@
-import React from 'react'
-import { StyleSheet, Text, View, Image, SafeAreaView } from 'react-native'
+import React from 'react';
+import { StyleSheet, Text, View, Image, SafeAreaView } from 'react-native';
 import { Button, Input } from '@rneui/themed'
-import { PlusCircleOutlined, ArrowLeftOutlined } from '@ant-design/icons'
-
+import { PlusCircleOutlined, ArrowLeftOutlined } from '@ant-design/icons';
+import { Header, Icon } from "@rneui/base";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 
 const login = () => {
@@ -15,26 +16,43 @@ const login = () => {
         />
       </View>
 
-      <View style={[styles.cadastro]}>
-        <Input placeholder='Entrar' />
-        <Input placeholder='Senha' />
+      <View >
+        <Text>Entrar</Text>
+        <Input inputStyle={{
+          border: '1px solid',
+          backgroundColor: 'white'
+        }} />
+        <Text>Senha</Text>
+        <Input inputStyle={{
+          border: '1px solid',
+          backgroundColor: 'white'
+        }} />
       </View>
 
       <View>
         <Button
-          title='Log in'
+          title='Login'
           loading={false}
           loadingProps={{ size: 'small', color: 'white' }}
           buttonStyle={{
-            backgroundColor: 'rgba(111, 202, 186, 1)',
-            borderRadius: 5,
-            margin: 10,
+            backgroundColor: '#4B88FA',
+            borderRadius: 0,
+            margin: 5,
+            width: '206px'
           }}
         ></Button>
       </View>
 
       <View style={[styles.cadastrar]}>
-        <Button title='Cadastrar' />
+        <Button title='Cadastre-se'
+          loading={false}
+          loadingProps={{ size: 'small', color: 'white' }}
+          buttonStyle={{
+            backgroundColor: '#FA281E',
+            borderRadius: 0,
+            margin: 0,
+            width: '206px'
+          }} />
       </View>
     </View>
   )
@@ -42,45 +60,72 @@ const login = () => {
 
 const contatos = () => {
   return (
-    <View style={[styles.geral]}>
 
-      <View>
-        <Text>Lista de contatos</Text>
-        <PlusCircleOutlined />
-      </View>
+    <SafeAreaProvider >
 
-      <View>
-        <Image
-          source={{ uri: 'https://cdn-icons-png.flaticon.com/512/5987/5987462.png' }}
-          style={{ width: 100, height: 100 }}
+
+        <Header
+
+          barStyle="default"
+          centerComponent={{
+            text: "Lista de Contatos",
+            style: { color: "#fff" }
+          }}
+
+          containerStyle={{ width: '100%' }}
+
+
+          rightComponent={{ icon: "add", color: "#fff" }}
 
         />
-        <Text>Marcos Andrade</Text>
-        <Text>81 988553424</Text>
-      </View>
 
-      <View>
-        <Image
-          source={{ uri: 'https://cdn-icons-png.flaticon.com/512/5987/5987462.png' }}
-          style={{ width: 100, height: 100 }}
-        />
-        <Text>Patrícia Tavares</Text>
-        <Text>81 998765332</Text>
+        <View style={[styles.contatos]}>
 
-      </View>
+          <View style={[styles.dados]}>
+            <Image
+              source={{ uri: 'https://cdn-icons-png.flaticon.com/512/5987/5987462.png' }}
+              style={{ width: 100, height: 100, padding: '0px', margin: '0px'}}
+            />
+          </View>
 
-      <View>
-        <Image
-          source={{ uri: 'https://cdn-icons-png.flaticon.com/512/5987/5987462.png' }}
-          style={{ width: 100, height: 100 }}
-        />
-      </View>
+          <View style={[styles.dados]}>
+              <Text>Marcos Andrade</Text>
+              <Text>81 988553424</Text>
+            </View>
 
-      <Text>Rodrigo Antunes</Text>
-      <Text>81 987765525</Text>
+          <View style={[styles.dados]}>
+            <Image
+              source={{ uri: 'https://cdn-icons-png.flaticon.com/512/5987/5987462.png' }}
+              style={{ width: 100, height: 100, padding: '0px', margin: '0px'}}
+            />
 
-    </View>
+          </View>
+
+          <View style={[styles.dados]}>
+              <Text>Patrícia Tavares</Text>
+              <Text>81 998765332</Text>
+            </View>
+
+          <View style={[styles.dados]}>
+            <Image
+              source={{ uri: 'https://cdn-icons-png.flaticon.com/512/5987/5987462.png' }}
+              style={{ width: 100, height: 100, padding: '0px', margin: '0px'}}
+            />
+          </View>
+
+          <View style={[styles.dados]}>
+            <Text>Rodrigo Antunes</Text>
+            <Text>81 987765525</Text>
+          </View>
+
+
+
+        </View>
+
+    </SafeAreaProvider>
+
   )
+
 }
 
 const cadUser = () => {
@@ -91,7 +136,7 @@ const cadUser = () => {
 
       <View>
 
-        <ArrowLeftOutlined/>
+        <ArrowLeftOutlined />
         <Text>Usuário</Text>
 
       </View>
@@ -125,7 +170,7 @@ const cadContato = () => {
 
       <View>
 
-        <ArrowLeftOutlined/>
+        <ArrowLeftOutlined />
         <Text>Contato</Text>
 
       </View>
@@ -156,7 +201,7 @@ const alterContato = () => {
 
       <View>
 
-        <ArrowLeftOutlined/>
+        <ArrowLeftOutlined />
         <Text>Contato</Text>
 
       </View>
@@ -181,24 +226,17 @@ const alterContato = () => {
 }
 
 const styles = StyleSheet.create({
-  geral: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
 
   login: {
 
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#ffff0',
+    backgroundColor: '#FAE2CD',
   },
   contatos: {
 
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    display:'flex',
 
   },
   cadUser: {
@@ -208,6 +246,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
 
   },
+  dados: {
+
+    display:'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 })
 
-export default login
+export default contatos
