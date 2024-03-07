@@ -1,34 +1,24 @@
-import React from 'react';
-import { StyleSheet, Text, View, Image, SafeAreaView } from 'react-native';
-import { Button, Input } from '@rneui/themed'
-import { PlusCircleOutlined, ArrowLeftOutlined } from '@ant-design/icons';
-import { Header, Icon } from "@rneui/base";
-import { SafeAreaProvider } from "react-native-safe-area-context";
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack'; 
-import Login from './screens/login'
-import AlterContato from './screens/alterContato';
-import CadContato from './screens/cadContato';
-import CadUser from './screens/cadUser';
-import Contatos from './screens/contatos';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import cadUser from './screens//cadUser';
+import contatos from './screens/contatos';
+import login from './screens/login';
 
 
-const Stack = createStackNavigatior();
+const Stack = createNativeStackNavigator();
 
-export default function App() {
+function App() {
 
 
   return (
 
     <NavigationContainer>
 
-      <Stack.Navigator initialRouteName="Login">
+      <Stack.Navigator initialRouteName="cadUser">
 
-        <Stack.Screen name='Login' component={Login}/>
-        <Stack.Screen name='CadContato' component={CadContato}/>
-        <Stack.Screen name='AlterContato' component={AlterContato}/>
-        <Stack.Screen name='CadUser' component={CadUser}/>
-        <Stack.Screen name='Contatos' component={Contatos}/>
+        <Stack.Screen name='login' component={login}/>
+        <Stack.Screen name='contatos' component={contatos}/>
+        <Stack.Screen name='cadUser' component={cadUser}/>
 
       </Stack.Navigator>
 
@@ -37,3 +27,6 @@ export default function App() {
   )
 
 }
+
+
+export default App;

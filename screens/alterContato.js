@@ -1,8 +1,7 @@
+import { Header } from "@rneui/base";
+import { Button, Input } from '@rneui/themed';
 import React from 'react';
-import { StyleSheet, Text, View, Image, SafeAreaView } from 'react-native';
-import { Button, Input } from '@rneui/themed'
-import { PlusCircleOutlined, ArrowLeftOutlined } from '@ant-design/icons';
-import { Header, Icon } from "@rneui/base";
+import { Text, View } from 'react-native';
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 

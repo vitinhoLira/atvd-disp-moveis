@@ -1,0 +1,72 @@
+##npm install axios
+##GET com axios
+
+function consultarDados(){
+    axios.get('http://professornilson.com/testeservice/clientes')
+    .then(function (response){
+        console.log(response)
+    }).catch(function (error){
+
+            console.log(error)
+
+    })
+
+}
+
+##POST com axios
+
+function cadastrarDados(){
+    axios.post('http://professornilson.com/testeservice/clientes', {
+        nome: getNome,
+        telefone: getTelefone,
+        cpf: getCpf
+    })
+    .then(function (response){
+
+        console.log(response)
+
+    }).catch(function (error){
+
+            console.log(error)
+
+    })
+
+}
+
+##PUT (alterar dados) com axios
+
+function alterarDados(){
+    axios.put('http://professornilson.com/testeservice/clientes', {
+        nome: getNome,
+        telefone: getTelefone,
+        cpf: getCpf
+    })
+    .then(function (response){
+
+        console.log(response)
+        
+    }).catch(function (error){
+
+            console.log(error)
+
+    })
+
+}
+
+##delete (deletar dados) com axios
+
+function deletarDados(){
+    axios.delete('http://professornilson.com/testeservice/clientes+getid')
+    .then(function (response){
+
+        console.log(response)
+        
+    }).catch(function (error){
+
+            console.log(error)
+
+    })
+
+}
+
+criar api utilizando json server
