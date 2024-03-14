@@ -1,8 +1,9 @@
 import { Header } from "@rneui/base";
-import { Button, Input } from '@rneui/themed';
+import { Input } from '@rneui/themed';
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { Button, Icon } from 'react-native-elements';
 
 
 export default class AlterContato extends React.Component{
@@ -13,25 +14,26 @@ export default class AlterContato extends React.Component{
 
             <SafeAreaProvider>
         
-            <Header
-              backgroundImageStyle={{}}
-              barStyle="default"
-              centerComponent={{
-                text: "Contato",
-                style: { color: "#fff" }
-              }}
-              centerContainerStyle={{}}
-              containerStyle={{ width: "100%" }}
-              leftComponent={{
-                icon: "arrow-back",
-                color: "#fff"
-              }}
-              leftContainerStyle={{}}
-              linearGradientProps={{}}
-              placement="center"
-              rightContainerStyle={{}}
-              statusBarProps={{}}
+        <Header
+        barStyle="default"
+        centerComponent={{
+          text: "Alterar Contato",
+          style: { color: "#fff" }
+        }}
+        
+        leftComponent={<Button
+          icon={
+            <Icon
+              name="arrow-left"
+              type="font-awesome"
+              size={15}
+              color="white"
             />
+          }
+          onPress={() => navigation.navigate('contatos')}
+
+        />}
+      />
         
         
             <View style={[styles.container]}>
@@ -85,3 +87,37 @@ export default class AlterContato extends React.Component{
     }
 
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  contato: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  image: {
+    width: 100,
+    height: 100,
+    marginHorizontal: 10,
+  },
+  textContainer: {
+    flexDirection: 'column',
+  },
+  nome: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  telefone: {
+    fontSize: 16,
+  },
+  divisao: {
+    backgroundColor: 'gray',
+    height: 8,
+    width: '100%',
+    borderRadius: 50,
+  },
+});

@@ -40,6 +40,7 @@ import { Image, StyleSheet, Text, View } from 'react-native';
             margin: 5,
             width: '206px'
           }}
+          onPress={()=>navigation.navigate('contatos')}
         ></Button>
       </View>
 
@@ -52,7 +53,10 @@ import { Image, StyleSheet, Text, View } from 'react-native';
             borderRadius: 0,
             margin: 0,
             width: '206px'
-          }} />
+          
+          }}
+          onPress={()=>navigation.navigate('cadUser')}
+          />
       </View>
     </View>
 
