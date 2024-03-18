@@ -5,8 +5,9 @@ import { Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import AlterContato from './alterContato';
+import CadContato from './cadContato';
 
-const Contatos = () => {
+const contatos = () => {
   const navigation = useNavigation();
 
   return (
@@ -27,8 +28,8 @@ const Contatos = () => {
                 color="white"
               />
             }
-            onPress={() => navigation.navigate('cadContato')}
-            
+            onPress={() => navigation.navigate(CadContato)}
+
           />
         }
         leftComponent={<Button
@@ -41,12 +42,13 @@ const Contatos = () => {
             />
           }
           onPress={() => navigation.navigate('login')}
-          
-        />}
+
+        />
+        }
       />
 
-<View style={styles.container}>
-        <TouchableOpacity onPress={()=>navigation.navigate(AlterContato)} style={styles.contato}>
+      <View style={styles.container}>
+        <TouchableOpacity onPress={() => navigation.navigate(AlterContato)} style={styles.contato}>
           <Image
             source={{ uri: 'https://cdn-icons-png.flaticon.com/512/5987/5987462.png' }}
             style={styles.image}
@@ -59,7 +61,7 @@ const Contatos = () => {
 
         <View style={[styles.divisao]}></View>
 
-        <TouchableOpacity onPress={()=>navigation.navigate(AlterContato)} style={styles.contato}>
+        <TouchableOpacity onPress={() => navigation.navigate(AlterContato)} style={styles.contato}>
           <Image
             source={{ uri: 'https://cdn-icons-png.flaticon.com/512/5987/5987462.png' }}
             style={styles.image}
@@ -72,7 +74,7 @@ const Contatos = () => {
 
         <View style={[styles.divisao]}></View>
 
-        <TouchableOpacity onPress={()=>navigation.navigate(AlterContato)} style={styles.contato}>
+        <TouchableOpacity onPress={() => navigation.navigate(AlterContato)} style={styles.contato}>
           <Image
             source={{ uri: 'https://cdn-icons-png.flaticon.com/512/5987/5987462.png' }}
             style={styles.image}
@@ -121,4 +123,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Contatos;
+export default contatos;

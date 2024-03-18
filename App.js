@@ -4,12 +4,12 @@ import cadUser from './screens//cadUser';
 import contatos from './screens/contatos';
 import login from './screens/login';
 import AlterContato from './screens/alterContato';
+import CadContato from './screens/cadContato';
 
 const Stack = createNativeStackNavigator();
 
 function App() {
-
-
+  
   return (
 
     <NavigationContainer>
@@ -20,6 +20,7 @@ function App() {
         <Stack.Screen name='contatos' component={contatos}/>
         <Stack.Screen name='cadUser' component={cadUser}/>
         <Stack.Screen name='AlterContato' component={AlterContato}/>
+        <Stack.Screen name='CadContato' component={CadContato}/>
 
       </Stack.Navigator>
 
