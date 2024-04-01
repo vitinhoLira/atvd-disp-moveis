@@ -1,61 +1,42 @@
 import { Header } from "@rneui/base";
 import { Input } from '@rneui/themed';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Button, Icon } from 'react-native-elements';
 
-
 export default class AlterContato extends React.Component {
 
   render() {
+    const { route, navigation } = this.props;
+    const { nome, tel } = route.params || {}; // Defina nome e tel como objetos vazios por padrão
 
     return (
-
       <SafeAreaProvider>
-
         <Header
           barStyle="default"
           centerComponent={{
             text: "Alterar Contato",
             style: { color: "#fff" }
           }}
-
           leftComponent={<Button
-            icon={
-              <Icon
-                name="arrow-left"
-                type="font-awesome"
-                size={15}
-                color="white"
-              />
-            }
-            onPress={() => this.props.navigation.navigate('contatos')}
-
+            icon={<Icon
+              name="arrow-left"
+              type="font-awesome"
+              size={15}
+              color="white"
+            />}
+            onPress={() => navigation.navigate('contatos')}
           />}
         />
-
-
-        <View style={[styles.container]}>
-
+        <View style={styles.container}>
           <View>
             <Text>Nome</Text>
-            <Input value='Marco Andrade' inputStyle={{
-              border: '1px solid',
-              backgroundColor: 'white'
-            }} />
+            <Input value={nome} inputStyle={{ border: '1px solid', backgroundColor: 'white' }} />
             <Text>Email</Text>
-            <Input value='mand@gmail.com' inputStyle={{
-              border: '1px solid',
-              backgroundColor: 'white'
-            }} />
-
+            <Input value='mand@gmail.com' inputStyle={{ border: '1px solid', backgroundColor: 'white' }} />
             <Text>Telefone</Text>
-            <Input value='81 988553424' inputStyle={{
-              border: '1px solid',
-              backgroundColor: 'white'
-            }} />
-
+            <Input value={tel} inputStyle={{ border: '1px solid', backgroundColor: 'white' }} />
             <Button
               title='Alterar'
               loading={false}
@@ -66,9 +47,10 @@ export default class AlterContato extends React.Component {
                 margin: 5,
                 width: '206px'
               }}
-              onPress={() => this.props.navigation.navigate('contatos')}></Button>
-
-            <Button title='Excluir'
+              onPress={() => navigation.navigate('contatos', { nome: nome, tel: tel })}
+            />
+            <Button
+              title='Excluir'
               loading={false}
               loadingProps={{ size: 'small', color: 'white' }}
               buttonStyle={{
@@ -77,17 +59,15 @@ export default class AlterContato extends React.Component {
                 margin: 0,
                 width: '206px'
               }}
-              onPress={() => this.props.navigation.navigate('contatos')} />
+              onPress={() => navigation.navigate('contatos')}
+            />
           </View>
         </View>
-
       </SafeAreaProvider>
-
-    )
-
+    );
   }
-
 }
+
 
 const styles = StyleSheet.create({
   container: {
