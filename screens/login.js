@@ -1,10 +1,21 @@
 import { useNavigation } from '@react-navigation/native';
 import { Button, Input } from '@rneui/themed';
 import { Image, StyleSheet, Text, View } from 'react-native';
+import {auth, FirebaseAuthTypes} from '../services/fireBaseConfig';
+import Password from 'antd/es/input/Password';
 
   const login = () => {
 
+    const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
     const navigation = useNavigation();
+
+    function handleLogin (){
+
+      auth().signInWithEmailAndPassword(email, password).then(() => console.log('logado')).catch(error => console.log(error));
+
+    }
 
     return (
 
@@ -40,7 +51,7 @@ import { Image, StyleSheet, Text, View } from 'react-native';
             margin: 5,
             width: '206px'
           }}
-          onPress={()=>navigation.navigate('contatos')}
+          onPress={handleLogin}
         ></Button>
       </View>
 
