@@ -2,7 +2,7 @@
 ##GET com axios
 
 function consultarDados(){
-    axios.get('http://professornilson.com/testeservice/clientes')
+    axios.get('http://localhost:3000/agenda')
     .then(function (response){
         console.log(response)
     }).catch(function (error){

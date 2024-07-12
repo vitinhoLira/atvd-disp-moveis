@@ -1,18 +1,28 @@
 import { useNavigation } from '@react-navigation/native';
 import { Header } from "@rneui/base";
-import React, {useEffect} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import AlterContato from './alterContato';
-import CadContato from './cadContato';
+import axios from 'axios';
 
-const contatos = () => {
+const Contatos = () => {
+  const [listaContatos, setListaContatos] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/agenda')
+      .then(response => {
+        setListaContatos(response.data);
+        console.log('Resposta recebida');
+      }).catch(error => {
+        console.log('Erro na requisição', error);
+      });
+  }, []);
+
   const navigation = useNavigation();
 
   return (
     <SafeAreaProvider>
-      
       <Header
         barStyle="default"
         centerComponent={{
@@ -29,66 +39,46 @@ const contatos = () => {
                 color="white"
               />
             }
-            onPress={() => navigation.navigate(CadContato)}
-
+            onPress={() => navigation.navigate('CadContato')}
           />
         }
-        leftComponent={<Button
-          icon={
-            <Icon
-              name="arrow-left"
-              type="font-awesome"
-              size={15}
-              color="white"
-            />
-          }
-          onPress={() => navigation.navigate('login')}
-
-        />
+        leftComponent={
+          <Button
+            icon={
+              <Icon
+                name="arrow-left"
+                type="font-awesome"
+                size={15}
+                color="white"
+              />
+            }
+            onPress={() => navigation.navigate('login')}
+          />
         }
       />
-
       <View style={styles.container}>
-
-        <TouchableOpacity onPress={() => navigation.navigate(AlterContato,{nome:"Marcos Andrade", tel:"81 988553424"})} style={styles.contato}>
-          <Image
-            source={{ uri: 'https://cdn-icons-png.flaticon.com/512/5987/5987462.png' }}
-            style={styles.image}
-          />
-          <View style={styles.textContainer}>
-            <Text style={styles.nome}>Marcos Andrade</Text>
-            <Text style={styles.telefone}>81 988553424</Text>
-          </View>
-        </TouchableOpacity>
-
-        <View style={[styles.divisao]}></View>
-
-        <TouchableOpacity onPress={() => navigation.navigate(AlterContato,{nome:"Patrcícia Tavares", tel:"81 9998765332"})} style={styles.contato}>
-          <Image
-            source={{ uri: 'https://cdn-icons-png.flaticon.com/512/5987/5987462.png' }}
-            style={styles.image}
-          />
-          <View style={styles.textContainer}>
-            <Text style={styles.nome}>Patrícia Tavares</Text>
-            <Text style={styles.telefone}>81 998765332</Text>
-          </View>
-        </TouchableOpacity>
-
-        <View style={[styles.divisao]}></View>
-
-        <TouchableOpacity onPress={() => navigation.navigate(AlterContato,{nome:"Rodrigo Antunes", tel:"81 987765525"})} style={styles.contato}>
-          <Image
-            source={{ uri: 'https://cdn-icons-png.flaticon.com/512/5987/5987462.png' }}
-            style={styles.image}
-          />
-          <View style={styles.textContainer}>
-            <Text style={styles.nome}>Rodrigo Antunes</Text>
-            <Text style={styles.telefone}>81 987765525</Text>
-          </View>
-        </TouchableOpacity>
-
+        {listaContatos.map(contato => (
+          <TouchableOpacity 
+            key={contato.id} 
+            onPress={() => navigation.navigate('AlterContato', { 
+              id: contato.id, 
+              nome: contato.nome, 
+              tel: contato.numero, 
+              email: contato.email 
+            })} 
+            style={styles.contato}
+          >
+            <Image
+              source={{ uri: 'https://cdn-icons-png.flaticon.com/512/5987/5987462.png' }}
+              style={styles.image}
+            />
+            <View style={styles.textContainer}>
+              <Text style={styles.nome}>{contato.nome}</Text>
+              <Text style={styles.telefone}>{contato.numero}</Text>
+            </View>
+          </TouchableOpacity>
+        ))}
       </View>
-
     </SafeAreaProvider>
   );
 };
@@ -127,4 +117,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default contatos;
+export default Contatos;

@@ -3,14 +3,14 @@ const lista = [];
 
 console.log('Antes da requisição');
 
-axios.get('http://localhost:3000/posts')
+axios.get('http://localhost:3000/agenda')
 .then(function (response){
 
     console.log('Resposta recebida');
     response.data.forEach(post => {
         lista.push(post.id);
-        lista.push(post.title);
-        lista.push(post.views);
+        lista.push(post.nome);
+        lista.push(post.numero);
       });
 
       console.log(lista)
