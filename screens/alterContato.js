@@ -1,12 +1,14 @@
 import axios from 'axios';
 import { Header } from "@rneui/base";
 import { Input } from '@rneui/themed';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import { SafeAreaProvider, useFocusEffect } from "react-native-safe-area-context";
 import { Button, Icon } from 'react-native-elements';
 
 const AlterContato = ({ route, navigation }) => {
+
+  //salva edição
   const { id, nome, tel, email } = route.params || {};
 
   const [nomeContato, setNomeContato] = useState(nome);
@@ -30,6 +32,7 @@ const AlterContato = ({ route, navigation }) => {
       });
 
       console.log('Contato alterado com sucesso');
+      atualizarContatos(); // Atualiza a lista após excluir
       navigation.navigate('contatos');
       
     } catch (error) {
@@ -37,6 +40,7 @@ const AlterContato = ({ route, navigation }) => {
     }
   };
 
+  //deleta contato
   const handleDelete = () => {
     try {
       if (!id) {
@@ -54,6 +58,7 @@ const AlterContato = ({ route, navigation }) => {
       });
 
       console.log('Contato excluído com sucesso');
+      atualizarContatos(); // Atualiza a lista após excluir
       navigation.navigate('contatos');
       
     } catch (error) {

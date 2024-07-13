@@ -15,20 +15,29 @@ const CadUser = () => {
   const [password, setPassword] = useState('');
 
   const handleCad = () => {
+    if (!email || !password) {
+      console.log('Email e senha não preenchidos!');
+      return;
+    }
+    
     createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
-      // ...
-    })
-    .catch((error) => {
-      if (error.code === 'auth/email-already-in-use'){
-        console.log('email já existe');
-      }
-      if (error.code === 'auth/invalid-email'){
-        console.log('email invalido');
-      }
-    });
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log('Usuário criado!:', user);
+        // Redirect or perform further actions
+      })
+      .catch((error) => {
+        console.error('Erro ao criar usuário:', error);
+        if (error.code === 'auth/email-already-in-use'){
+          console.log('Email já cadastrado');
+        } else if (error.code === 'auth/invalid-email'){
+          console.log('email invalido');
+        } else if (error.code === 'auth/weak-password') {
+          console.log('Senha fraca');
+        } else {
+          console.log('Error code:', error.code);
+        }
+      });
   };
 
   return (
